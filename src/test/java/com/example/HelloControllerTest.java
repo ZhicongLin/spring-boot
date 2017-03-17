@@ -29,25 +29,33 @@ public class HelloControllerTest {
 
     private MockMvc mockMvc;
 
-    private MockHttpSession session;
-
     @Before
     public void setup() {
         // init applicationContext
         this.mockMvc = webAppContextSetup(this.wac).build();
-        this.session = new MockHttpSession();
     }
 
     @Test
-    public void index() throws Exception {
+    public void postIndex() throws Exception {
         // get using get
         this.mockMvc
                 .perform(
-                 post("/hello/index")
-                 .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
-                 .andExpect(status().isOk())
-                 .andExpect(content().contentType("application/json;charset=UTF-8"))
-                 .andDo(print());
+                        post("/hello/index")
+                                .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andDo(print());
+    }
+
+    @Test
+    public void getIndex() throws Exception {
+        // get using get
+        this.mockMvc
+                .perform(
+                        get("/hello/index")
+                                .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+                .andExpect(status().is(405))
+                .andDo(print());
     }
 
 }
