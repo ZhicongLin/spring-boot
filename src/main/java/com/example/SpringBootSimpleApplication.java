@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class SpringBootSimpleApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootSimpleApplication.class, args);
-	}
+    @RequestMapping(value = {"/", "index"})
+    @ResponseBody
+    public String welcome() {
+        return "Welcome to spring boot simple!";
+    }
 
-	@RequestMapping("/")
-	@ResponseBody
-	public String welcome() {
-		return "Welcome to spring boot simple!";
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBootSimpleApplication.class, args);
+    }
 }
